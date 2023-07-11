@@ -1,0 +1,39 @@
+{% extends 'tienda/base.html' %}
+{% block contenido %}
+{% load humanize %}
+{% load static %}
+      <!-- Broaster Burgers -->
+<section>
+<div class="row pt-5 pb-5 m-0">
+  {% for p in productos %}
+  <div class="col-md-3">
+    <div class="card mb-3">
+      {% if p.imagen %}
+      <img src=" {{p.imagen.url}}" class="card-img-top" alt="...">
+      {% endif %}
+      <div class="card-body text-center">
+        <h5 class="card-title fs-2 fw-bold">{{p.nombre}}</h5>
+        <p class="card-text fs-5 fw-bold">${{p.precio | intcomma}}</p>
+        <p class="card-text fs-5 fw-bold">{{p.sabor}}</p>
+        <p class="card-text fs-5 fw-bold">{{p.peso}}</p>
+        <p class="card-text fs-5 fw-bold">{{p.marca }}</p>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Comprar
+        </button>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

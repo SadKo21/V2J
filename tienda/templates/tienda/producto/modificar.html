@@ -1,0 +1,31 @@
+{% extends 'tienda/base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters%}
+{% block contenido %}
+
+<section class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 cold-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {{mensaje}}
+
+    <form action="" method="post" endtype="multipart/form-data">
+
+
+        {% csrf_token %}
+        {{ form | crispy}}
+
+        <div class="d-flex justify-content-evenly">
+            <input type="submit" value="GUARDAR" class="btn btn-primary">
+            <input type="submit" value="CANCELAR" class="btn btn-secondary">
+
+        </div>
+        
+    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
