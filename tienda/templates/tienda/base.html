@@ -32,7 +32,7 @@
       <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
         <div class="container-fluid">
             <a href="Index.html"><img src="{% static 'tienda/Images/Logo-black.png' %}" alt="logotipo" width="60px" height="50px"></a>
-          <a class="navbar-brand px-3" href="sesion.html">Iniciar sesion<i class="fa fa-fw fa-sign-in" aria-hidden="true"></i></a>
+          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
 
               <!-- PRINCIPAL -->
               <li class="nav-item">
-                <a class="nav-link active" text-white aria-current="page" href="Index.html">Principal<i class="fa fa-fw fa-home"></i></a>
+                <a class="nav-link active" text-white aria-current="page" href="{% url 'home' %}">Principal<i class="fa fa-fw fa-home"></i></a>
               </li>
               <!-- PRINCIPAL -->
 
@@ -74,18 +74,33 @@
 
 
               <!-- CARRITO -->
+
+              {% if perms.app.add_producto %}
               <li class="nav-item">
                 <a class="nav-link  text-white" href="{% url 'agregar-producto' %}" tabindex="-1" aria-disabled="true"> Agregar Producto<i class="fa fa-fw fa-shopping-cart" aria-hidden="true"></i></a>
               </li>
+              {% endif %}
+              {% if perms.app.view_producto %}
               <!-- CARRITO -->
+              {% endif%}
+              {% if user.is_authenticated %}
 
+              <li>
+                <a href="{% url 'logout' %}" class="btn btn-danger float-sm-end">Cerrar Sesion</a>
+              </li>
 
+              {% else %}
+              <li>
+                <a href="{% url 'login' %}" class="btn btn-warning float-lg-end">Iniciar Sesion</a>
+              </li>
+              {% endif %}
+              <li>
+                <a href="{% url 'registro' %}" class="btn btn-light ">Registrate</a>
+              </li>
 
               <!-- AGREGAR -->
             </ul>
-            <form class="d-flex">
-              <button class="btn btn-outline-warning" type="submit"><a href="agregar.html">Agregar</a></button>
-            </form>
+            
           </div>
         </div>
       </nav>

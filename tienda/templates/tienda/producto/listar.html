@@ -25,9 +25,15 @@
                 {% if p.imagen %}
                 <td><img src="{{ p.imagen.url }}" alt="imagen-producto" class="w-25"></td>
                 {% endif %}
+
+                {% if perms.app.change_producto %}
                 <td><a href="{% url 'modificar-producto' p.id %}" class="btn btn-warning">Modificar</a></td>
+                {% endif %}
+                {% if perms.app.delete_producto %}
                 <td><a href="{% url 'eliminar-producto' p.id %}"class="btn btn-danger">Eliminar</a></td>
+                {% endif %}
             </tr>
+
             {% endfor %}
         </table>
 </div>
